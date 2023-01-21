@@ -16,9 +16,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from drinks import views
+<<<<<<< HEAD
 
+=======
+from .views import CustomAuthToken
+>>>>>>> adarsh
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('drinks/',views.drink_list),
-    path('drinks/<int:id>',views.drink_details)
+    path('drinks/<int:id>',views.drink_details),
+    path('api-token-auth/', CustomAuthToken.as_view(), name='api_token_auth'),
 ]
