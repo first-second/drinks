@@ -5,12 +5,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
 from django.shortcuts import render
+from django.http import HttpResponse
 from rest_framework.authtoken.views import ObtainAuthToken
 
 class CustomAuthToken(ObtainAuthToken):
     pass
-
-
 
 @api_view(['GET','POST'])
 def drink_list(request):
@@ -40,6 +39,8 @@ def drink_details(request,id):
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data,status=status.HTTP_201_CREATED)
-    elif request.method("DELETE"):
-        drink.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT)
+    elif request.method == "DELETE":
+        if drink.delete():
+            return HttpResponse("Deleted successfully",status=204)
+        else:
+            return HttpResponse("invalid data",status=405)
