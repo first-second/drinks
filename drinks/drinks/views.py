@@ -20,12 +20,12 @@ def home(request):
     category = request.GET.get('category')
 
     if country:
-        url = 'https://newsapi.org/v2/top-headlines?country='+country+'&apiKey='+API_KEY
+        url = 'https://newsapi.org/v2/top-headlines?country='+str(country)+'&apiKey='+API_KEY
         response = requests.get(url)
         data = response.json()
         articles = data['articles']
     else:
-        url = 'https://newsapi.org/v2/top-headlines?category='+category+'&apiKey='+API_KEY
+        url = 'https://newsapi.org/v2/top-headlines?category='+str(category)+'&apiKey='+API_KEY
         response = requests.get(url)
         data = response.json()
         articles = data['articles']
