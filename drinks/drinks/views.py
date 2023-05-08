@@ -16,9 +16,10 @@ class CustomAuthToken(ObtainAuthToken):
 
 
 def home(request):
+    '''
     country = request.GET.get('country')
     category = request.GET.get('category')
-
+    
     if country:
         url = 'https://newsapi.org/v2/top-headlines?country='+str(country)+'&apiKey='+API_KEY
         response = requests.get(url)
@@ -29,6 +30,11 @@ def home(request):
         response = requests.get(url)
         data = response.json()
         articles = data['articles']
+        '''
+    url = 'https://newsapi.org/v2/top-headlines?country=in&apiKey='+API_KEY
+    response = requests.get(url)
+    data = response.json()
+    articles = data['articles']
     context = {
         'articles' : articles
     }

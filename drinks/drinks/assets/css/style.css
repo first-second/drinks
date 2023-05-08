@@ -1,0 +1,5 @@
+body .container .row .col-md-8{
+    width:100%;
+    min-width:1000px;
+    height:auto;
+}
